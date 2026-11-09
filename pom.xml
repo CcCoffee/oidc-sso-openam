@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        父 POM：统一管理 Spring Boot 版本与 Java 版本。
+        本 demo 使用 OpenAM 作为 OpenID Provider（OP），
+        client-app 作为依赖方（RP），resource-server 作为资源服务器。
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>openam-oidc-sso-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>openam-oidc-sso-demo</name>
+    <description>OpenAM 作为 OIDC Provider 的单点登录演示</description>
+
+    <modules>
+        <module>client-app</module>
+        <module>resource-server</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+</project>

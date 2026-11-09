@@ -1,0 +1,34 @@
+# 第二个 RP 实例：端口 8092。
+# 与 OpenAM 上的 openam-client-2 注册信息一一对应。
+demo:
+  registration-id: openam-client-2
+  openam-base-url: http://localhost:8090/openam
+
+server:
+  port: 8092
+  servlet:
+    session:
+      cookie:
+        name: CLIENT2_SESSION
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          openam-client-2:
+            client-id: openam-client-2
+            client-secret: openam-secret-2
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+              - message.read
+              - message.write
+        provider:
+          openam-client-2:
+            issuer-uri: http://localhost:8090/openam/oauth2
+            user-name-attribute: sub

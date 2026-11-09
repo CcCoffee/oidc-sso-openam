@@ -1,0 +1,18 @@
+server:
+  port: 8093
+
+spring:
+  application:
+    name: resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # OpenAM 在 statelessTokensEnabled 模式下签发 RS256 签名的 JWT Access Token。
+          # 资源服务器通过授权服务器的 JWK Set 本地验签，无需逐次调用 introspection。
+          # issuer-uri 会在启动时拉取 discovery 文档，因此 OpenAM 必须先启动。
+          issuer-uri: http://localhost:8090/openam/oauth2
+
+logging:
+  level:
+    org.springframework.security: INFO

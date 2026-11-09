@@ -1,0 +1,29 @@
+# 第一个 RP 实例：端口 8091。
+# 与 OpenAM 上的 openam-client-1 注册信息一一对应。
+demo:
+  registration-id: openam-client-1
+  openam-base-url: http://localhost:8090/openam
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          openam-client-1:
+            client-id: openam-client-1
+            client-secret: openam-secret-1
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+              - message.read
+              - message.write
+        provider:
+          openam-client-1:
+            # issuer-uri 会让客户端在启动时拉取 OpenAM 的 discovery 文档，
+            # 因此必须先启动并完成 OpenAM 配置，再启动本应用。
+            issuer-uri: http://localhost:8090/openam/oauth2
+            user-name-attribute: sub

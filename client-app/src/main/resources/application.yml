@@ -1,0 +1,19 @@
+server:
+  port: 8091
+  servlet:
+    session:
+      cookie:
+        # 与 OpenAM 及其他客户端的 Cookie 名区分，避免同 host 不同端口互相覆盖。
+        name: CLIENT_SESSION
+
+spring:
+  application:
+    name: client-app
+  profiles:
+    # 默认以 app1 身份启动（端口 8091）；
+    # 第二个实例使用 --spring.profiles.active=app2 启动（端口 8092）。
+    default: app1
+
+logging:
+  level:
+    org.springframework.security: INFO
